@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <h1> A place to ask questions! </h1>
+<%else%>
+  <%= link_to "Sign in", new_user_session_path %>
+<%end%>
