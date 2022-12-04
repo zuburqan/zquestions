@@ -7,7 +7,6 @@ describe 'User signing up' do
     expect(User.count).to eq 0
 
     visit '/'
-    click_on 'Sign in'
     click_on 'Sign up'
     fill_in 'Email', with: 'foo@example.com'
     fill_in 'Password', with: 'foobar'
@@ -20,12 +19,12 @@ describe 'User signing up' do
 end
 
 describe 'User sign in/sign out' do
-  scenario 'sign in' do
-    expect(User.count).to eq 0
-    create(:user)
+  before(:all) do
+    create(:user, email: 'foo@example.com', password: 'foobar')
+  end
 
+  scenario 'sign in' do
     visit '/'
-    click_on 'Sign in'
     fill_in 'Email', with: 'foo@example.com'
     fill_in 'Password', with: 'foobar'
     click_on 'Log in'
@@ -34,9 +33,7 @@ describe 'User sign in/sign out' do
   end
 
   scenario 'logout' do
-    create(:user)
     visit '/'
-    click_on 'Sign in'
     fill_in 'Email', with: 'foo@example.com'
     fill_in 'Password', with: 'foobar'
     click_on 'Log in'
