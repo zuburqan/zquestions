@@ -34,4 +34,15 @@ class QuestionsController < ApplicationController
     Question.destroy(id)
     redirect_to questions_path, notice: 'Question deleted'
   end
+
+  def search
+    if params[:search].empty?
+      redirect_to questions_path
+    else
+      key = "%#{params[:search]}%"
+      @questions = Question.where('title LIKE :search OR body LIKE :search', search: key).order(votes: :desc,
+                                                                                                created_at: :desc)
+      render template: 'questions/index'
+    end
+  end
 end

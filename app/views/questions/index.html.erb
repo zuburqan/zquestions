@@ -1,11 +1,4 @@
-<h1>All questions</h1>
+<h1>Questions</h1>
 
-<ul>
-  <% @questions.each do |question| %>
-    <li>
-      <a href="<%= question_path(question) %>">
-        <%= question.title %>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<%= render "layouts/search" %>
+<%= render "layouts/questions" %>

@@ -1,0 +1,7 @@
+<hr>
+<%= form_tag(search_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<%= button_to "Clear", questions_path, method: :get %>
+

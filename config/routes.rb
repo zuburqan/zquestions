@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resources :answers
     post "/answers/:id", to: 'answers#update'
   end
+
+  get "/search", to: "questions#search"
 end
