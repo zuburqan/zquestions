@@ -20,12 +20,13 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions = Question.order(created_at: :desc)
   end
 
   def show
     id = params['id']
     @question = Question.find(id)
+    @question_answers = @question.answers.order(votes: :desc, created_at: :desc)
   end
 
   def destroy

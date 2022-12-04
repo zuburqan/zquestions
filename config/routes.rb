@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :questions, except: [:update] do
-    resources :answers, except: [:update]
+    resources :answers
+    post "/answers/:id", to: 'answers#update'
   end
 end

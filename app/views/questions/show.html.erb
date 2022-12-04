@@ -7,8 +7,16 @@
 <%end%>
 
 <h2>Answers</h2>
-<% @question.answers.each do |answer| %>
+<% @question_answers.each do |answer| %>
   <hr>
+  <p> <%=answer.created_at%> </p>
+  <p> Approval: <%=answer.votes%> </p>
+  <%= button_to question_answer_path([answer.question, answer], counter: :up, id: answer.id), method: :patch do %>
+    <i class="fa-solid fa-thumbs-up"></i>
+  <%end%>
+  <%= button_to question_answer_path([answer.question, answer], counter: :down, id: answer.id), method: :patch do %>
+    <i class="fa-solid fa-thumbs-down"></i>
+  <%end%>
   <p>
     <strong><%= answer.user.email %>:</strong>
     <%= answer.body %>

@@ -37,7 +37,7 @@ describe 'questions list' do
   before(:each) { log_in }
 
   scenario 'seeing list of questions asked' do
-    create(:question, title: 'half-life 3 coming out?', body: 'hl3?')
+    create(:question, title: 'half-life 3 coming out?', body: 'hl3?', user_id: User.last.id)
     visit '/'
     click_on 'All questions'
     expect(page).to have_content 'half-life 3 coming out?'

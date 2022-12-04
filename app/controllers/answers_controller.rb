@@ -15,6 +15,19 @@ class AnswersController < ApplicationController
     redirect_to question_path(params['question_id']), notice: 'Answer deleted'
   end
 
+  def update
+    id = params['id']
+    counter = params['counter']
+
+    if counter == 'up'
+      Answer.find(id).increment!(:votes)
+    else
+      Answer.find(id).decrement!(:votes)
+    end
+
+    redirect_to question_path(params['question_id'])
+  end
+
   private
 
   def answer_params
