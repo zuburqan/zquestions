@@ -9,6 +9,12 @@ class AnswersController < ApplicationController
     redirect_to question_path(@question)
   end
 
+  def destroy
+    id = params['id']
+    Answer.destroy(id)
+    redirect_to question_path(params['question_id']), notice: 'Answer deleted'
+  end
+
   private
 
   def answer_params

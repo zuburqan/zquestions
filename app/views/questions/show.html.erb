@@ -8,10 +8,15 @@
 
 <h2>Answers</h2>
 <% @question.answers.each do |answer| %>
+  <hr>
   <p>
     <strong><%= answer.user.email %>:</strong>
     <%= answer.body %>
+    <% if current_user.id == answer.user_id%>
+      <%= button_to "Delete", [answer.question, answer], method: :delete %>
+    <%end%>
   </p>
+  </hr>
 <% end %>
 
 <%= form_with model: [ @question, @question.answers.build ] do |form| %>
