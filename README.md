@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 3.1.2
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
+* Rails version
+    rails version: 7.0.4
 
 * Database creation
-
-* Database initialization
+```
+  rails db:create db:migrate
+  ```
+  Dummy username and password in database.yml
 
 * How to run the test suite
+    ```
+    bundle exec rspec
+    ```
+* Run linter (rubocop)
+    ```
+    bundle exec rubocop
+    bundle exec rubocop spec/
+    bundle exec rubocop app/
+    ```
+* Starting server
+    ```
+    bundle exec rails s
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Notes
+The development database will be empty, so you will have to play with the CRUD to add and delete
+stuff, driven by the UI. There is no seed file.
 
-* Deployment instructions
-
-* ...
+### This project comes with some background and context:
+https://delirious-radon-007.notion.site/Questions-App-edcc53538bf8489289c7b4646cdcd50f
