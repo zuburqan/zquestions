@@ -39,8 +39,23 @@ describe 'questions list' do
   scenario 'seeing list of questions asked' do
     create(:question, title: 'half-life 3 coming out?', body: 'hl3?')
     visit '/'
-    click_on 'Previous questions'
+    click_on 'All questions'
     expect(page).to have_content 'half-life 3 coming out?'
+  end
+end
+
+describe 'delete question' do
+  before(:each) { log_in }
+
+  scenario 'deleting question previously asked by same user' do
+    question = create(:question, title: 'half-life 3 coming out?', body: 'hl3?', user_id: User.last.id)
+    expect(Question.count).to eq 1
+    visit '/'
+    click_on 'All questions'
+    click_on question.title
+    click_on 'Delete'
+    expect(Question.count).to eq 0
+    expect(current_path).to eq '/questions'
   end
 end
 

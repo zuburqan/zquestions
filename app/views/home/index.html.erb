@@ -3,8 +3,8 @@
   <%= button_to "Ask question", new_question_path, method: :get %>
 
   <br>
-  <h2> Previously asked questions <h2>
-  <%= button_to "Previous questions", questions_path, method: :get %>
+  <hr>
+  <%= button_to "All questions", questions_path, method: :get %>
 
 <%else%>
   <%= link_to "Sign in", new_user_session_path %>

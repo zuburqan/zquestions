@@ -22,4 +22,15 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
+
+  def show
+    id = params['id']
+    @question = Question.find(id)
+  end
+
+  def destroy
+    id = params['id']
+    Question.destroy(id)
+    redirect_to questions_path, notice: 'Question deleted'
+  end
 end
