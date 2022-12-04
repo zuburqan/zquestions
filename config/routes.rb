@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'home#index'
 
-  resources :questions, except: [:update]
+  resources :questions, except: [:update] do
+    resources :answers, except: [:update]
+  end
 end

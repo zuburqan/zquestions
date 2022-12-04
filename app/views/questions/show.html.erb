@@ -3,5 +3,23 @@
 <p><%= @question.body %></p>
 
 <% if current_user.id == @question.user_id%>
-  <%= button_to "Delete", question_path(@question), method: :delete %>
+  <%= button_to "Delete question", question_path(@question), method: :delete %>
 <%end%>
+
+<h2>Answers</h2>
+<% @question.answers.each do |answer| %>
+  <p>
+    <strong><%= answer.user.email %>:</strong>
+    <%= answer.body %>
+  </p>
+<% end %>
+
+<%= form_with model: [ @question, @question.answers.build ] do |form| %>
+  <p>
+    <%= form.label 'Answer' %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit "Submit answer" %>
+  </p>
+<% end %>

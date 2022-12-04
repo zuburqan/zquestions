@@ -53,9 +53,26 @@ describe 'delete question' do
     visit '/'
     click_on 'All questions'
     click_on question.title
-    click_on 'Delete'
+    click_on 'Delete question'
     expect(Question.count).to eq 0
     expect(current_path).to eq '/questions'
+  end
+end
+
+describe 'answering a question' do
+  before(:each) { log_in }
+
+  scenario 'posting answers to a question' do
+    question = create(:question, title: 'half-life 3 coming out?', body: 'hl3?', user_id: User.last.id)
+    expect(Answer.count).to eq 0
+    visit '/'
+    click_on 'All questions'
+    click_on question.title
+    fill_in 'answer[body]', with: 'No plans'
+    click_on 'Submit answer'
+    expect(current_path).to eq "/questions/#{question.id}"
+    expect(Answer.count).to eq 1
+    expect(page).to have_content 'No plans'
   end
 end
 
